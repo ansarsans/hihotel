@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "node scripts/prepare-pages.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint src"
   },
   "dependencies": {
     "lucide-react": "^1.16.0",

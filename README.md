@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hi Hotel Frontend
 
-## Getting Started
+Современный многостраничный frontend сайта `Hi Hotel` на:
 
-First, run the development server:
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+
+Проект сделан как `frontend-only` (без backend/API/DB).
+
+## Локальный запуск
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Открыть: `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Почему не работал GitHub Pages (Deploy from a branch)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`Deploy from a branch` не собирает Next.js-приложение как Node-проект.  
+Этот режим публикует только уже готовые статические файлы из ветки/папки.
 
-## Learn More
+Если в ветке лежит исходный код (`src`, `app`, `package.json`), а не экспортированный HTML/CSS/JS, сайт не запустится.
 
-To learn more about Next.js, take a look at the following resources:
+## Публикация через Deploy from a branch (правильный поток)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Сгенерировать статическую версию:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build:pages
+```
 
-## Deploy on Vercel
+2. Коммитнуть папку `docs/` в репозиторий.
+3. GitHub → `Settings` → `Pages`.
+4. `Source`: `Deploy from a branch`.
+5. `Branch`: `main` (или нужная ветка), `Folder`: `/docs`.
+6. Сохранить.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Скрипт `build:pages` автоматически:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- включает static export для GitHub Pages,
+- определяет имя репозитория для `basePath`,
+- собирает сайт,
+- копирует результат в `docs/`,
+- добавляет `docs/.nojekyll`.
+
+## Полезные команды
+
+```bash
+npm run lint
+npm run build
+npm run build:pages
+```
