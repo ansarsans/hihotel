@@ -20,6 +20,7 @@ import {
   getLocalizedText,
   homeAdvantages,
   homeMoodCards,
+  withBasePath,
   uiCopy,
 } from "@/data/site-data";
 
@@ -49,7 +50,7 @@ export default function HomePage() {
     <>
       <section className="relative min-h-screen overflow-hidden">
         <Image
-          src="/cities/almaty-hero.jpg"
+          src={withBasePath("/cities/almaty-hero.jpg")}
           alt="Городской вид Алматы"
           fill
           priority

@@ -4,7 +4,12 @@ import Image from "next/image";
 import { useLanguage } from "@/components/language-provider";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { galleryImages, getLocalizedText, uiCopy } from "@/data/site-data";
+import {
+  galleryImages,
+  getLocalizedText,
+  uiCopy,
+  withBasePath,
+} from "@/data/site-data";
 
 export default function GalleryPage() {
   const { language } = useLanguage();
@@ -13,7 +18,7 @@ export default function GalleryPage() {
     <>
       <section className="relative h-[48vh] min-h-[320px] overflow-hidden">
         <Image
-          src="/cities/astana-riverside-v2.jpg"
+          src={withBasePath("/cities/astana-riverside-v2.jpg")}
           alt="Hi Hotel gallery hero"
           fill
           priority

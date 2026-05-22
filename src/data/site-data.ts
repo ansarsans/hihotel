@@ -10,6 +10,20 @@ export interface LocalizedText {
   kz: string;
 }
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export function withBasePath(path: string) {
+  if (!path.startsWith("/")) {
+    return path;
+  }
+
+  if (!publicBasePath) {
+    return path;
+  }
+
+  return `${publicBasePath}${path}`;
+}
+
 const DIGRAPH_MAP: Array<[string, string]> = [
   ["SH", "Ш"],
   ["Sh", "Ш"],
@@ -218,15 +232,15 @@ export interface HomeMoodCard {
   icon: "focus" | "social" | "recharge";
 }
 
-const almatyCityscape = "/cities/almaty-cityscape.jpg";
-const almatyPanfilov = "/cities/almaty-downtown-park.jpg";
-const almatyKoktobe = "/cities/almaty-koktobe.jpg";
-const almatyAkimat = "/cities/almaty-akimat.jpg";
-const astanaEsil = "/cities/astana-embankment.jpg";
-const astanaChubary = "/cities/astana-riverside-v2.jpg";
-const astanaIshimBeach = "/cities/astana-ishim-beach.jpg";
-const astanaTripOne = "/cities/astana-trip-01.jpg";
-const astanaTripTwo = "/cities/astana-trip-02.jpg";
+const almatyCityscape = withBasePath("/cities/almaty-cityscape.jpg");
+const almatyPanfilov = withBasePath("/cities/almaty-downtown-park.jpg");
+const almatyKoktobe = withBasePath("/cities/almaty-koktobe.jpg");
+const almatyAkimat = withBasePath("/cities/almaty-akimat.jpg");
+const astanaEsil = withBasePath("/cities/astana-embankment.jpg");
+const astanaChubary = withBasePath("/cities/astana-riverside-v2.jpg");
+const astanaIshimBeach = withBasePath("/cities/astana-ishim-beach.jpg");
+const astanaTripOne = withBasePath("/cities/astana-trip-01.jpg");
+const astanaTripTwo = withBasePath("/cities/astana-trip-02.jpg");
 
 export const uiCopy = {
   metadata: {
